@@ -40,7 +40,7 @@ def leave_one_out(data, classlabel, n=3, loop=True):
     return error
 
 
-def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accuracy=0):
+def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accuracy=0, n=3, verbose=True):
     """
     Uses leave one out to search through the whole of the feature set to determine what set
     of features create the most accurate model for KNN
@@ -50,10 +50,12 @@ def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accura
     :param featurelist: The current list of features the algorithm is searching through
     :param bestlist: Always a subset of featurelist, the best set of features (most accurate)
     :param best_accuracy: the accuracy of bestlist
+    :param n: the number of neighbors to test with
+    :param verbose: determines if you want a print out of each feature set and its accuracy
     :return: returns the final bestlist and accuracy
     """
 
-    num_of_neighbors = 3
+    num_of_neighbors = n
     current_accuracy = 0
 
     # Exit condition
@@ -73,11 +75,14 @@ def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accura
         uselist.append(column)
 
         # print to see the loops
-        print('Features being tested', uselist)
+        if verbose:
+            print('Features being tested', uselist)
 
         # test accuracy of the set of features
         test_accuracy = leave_one_out(data.iloc[:, uselist], classlabel, n=num_of_neighbors, loop=True)
-        print(test_accuracy)
+
+        if verbose:
+            print(test_accuracy)
         # keeps a running total of the best set of features within the use list
         if test_accuracy > current_accuracy:
             featurelist = uselist
@@ -87,7 +92,8 @@ def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accura
     if current_accuracy > best_accuracy:
         bestlist = featurelist
         best_accuracy = current_accuracy
-    return forward_selection(data, classlabel, featurelist, bestlist=bestlist, best_accuracy=best_accuracy)
+    return forward_selection(data, classlabel, featurelist, bestlist=bestlist, best_accuracy=best_accuracy,
+                             n=n, verbose=verbose)
 
 
 
