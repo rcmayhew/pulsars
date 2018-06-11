@@ -21,6 +21,7 @@ from 1-20 to find the best k/feature set combination. results below:
 | [2, 7, 6]    | 0.8324952508660185 | 15|
 | [2, 7, 6]    | 0.8185272097441055 | 17| 
 | [2, 7, 6]    | 0.8054531232539949 | 19|
+
  best set: [2, 1, 6, 3] 0.9685439713934518 1   
     Through the search, there are a two different groups of features that are used, [1, 2, 3, 6] for smaller ns,
     and [2, 6, 7] for all larger n up to 19. features 2 and 6 are strong in both groups. These features are
