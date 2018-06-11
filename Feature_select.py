@@ -1,25 +1,26 @@
 from sklearn.model_selection import LeaveOneOut
 from sklearn.neighbors import KNeighborsRegressor
-import numpy as np
 import random
 
 
-def create_train_data(data, classlabels, row):
-    test_class = row[8]
-    test_data = np.delete(row, 8)
-    train_data = np.delete(data, row)
-    class_data = np.delete(classlabels, row)
-
-    return train_data, class_data, test_data, test_class
-
-
 def normalize(data):
+    """
+    standardizes the data
+    :param data: data without the class label
+    :return: returns the data without class labels standardized
+    """
     return (data - data.mean()) / (data.max() - data.min())
 
 
-# returns the percent correct of the model trained by the
-# features given by data
 def leave_one_out(data, classlabel, n=3, loop=True):
+    """
+    tests k-fold accuracy when k = n
+    :param data: the test data without the class identifier
+    :param classlabel: the lable of the class for each instance
+    :param n: the number of neighbors to be tested, default is 3
+    :param loop: loop true is normal, loop false is for testing
+    :return: the average overall accuracy for leave one out
+    """
     knn = KNeighborsRegressor(n_neighbors=n)
     loo = LeaveOneOut()
     size = loo.get_n_splits(data, classlabel)
@@ -43,7 +44,8 @@ def leave_one_out(data, classlabel, n=3, loop=True):
 def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accuracy=0, n=3, verbose=True):
     """
     Uses leave one out to search through the whole of the feature set to determine what set
-    of features create the most accurate model for KNN
+    of features create the most accurate model for KNN. The functions recurs at the start
+    "layer" in the loop for greater readability.
     :param data: The entirety of the feature data
     :param classlabel: The class labels for the data
     :param featurelist: The current list of features the algorithm is searching through
@@ -92,6 +94,7 @@ def forward_selection(data, classlabel, featurelist=[], bestlist=[], best_accura
     if current_accuracy > best_accuracy:
         bestlist = featurelist
         best_accuracy = current_accuracy
+
     return forward_selection(data, classlabel, featurelist, bestlist=bestlist, best_accuracy=best_accuracy,
                              n=n, verbose=verbose)
 
