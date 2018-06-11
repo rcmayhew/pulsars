@@ -1,4 +1,4 @@
-# pulsars
+# Pulsars
 Using the dataset from the Kaggle dataset list, https://www.kaggle.com/pavanraj159/predicting-a-pulsar-star, this repository is meant to 
 explore differnet models to classify pulsars. After looking at the data and seeing it was not easliy separable, I decided that clustering
 would be a better choice to start out with.
