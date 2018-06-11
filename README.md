@@ -22,12 +22,13 @@ from 1-20 to find the best k/feature set combination. results below:
 | [2, 7, 6]    | 0.8185272097441055 | 17| 
 | [2, 7, 6]    | 0.8054531232539949 | 19|
 
- best set: [2, 1, 6, 3] 0.9685439713934518 1   
-    Through the search, there are a two different groups of features that are used, [1, 2, 3, 6] for smaller ns,
-    and [2, 6, 7] for all larger n up to 19. features 2 and 6 are strong in both groups. These features are
-    Excess kurtosis of the integrated profile, and  Excess kurtosis of the DM-SNR curve. In small k clustering,
-    Standard deviation of the integrated profile and Skewness of the integrated profile is used, but in larger
-    K cluster, those are replaced with Skewness of the DM-SNR curve. 
-    When discussing the choice of n, even numbers should never be chosen despite its accuracy, because it can then 
-    predict the class label based on order of the instances, and not based on clustering if there is a tie. So looking 
-    at the the odd only numbers, only k = [1, 3, 5] are above the 90% threshhold, with ! being the greatest accuracy.
+The best feature set was [2, 1, 6, 3] with a K of 1, and that give an accuracy of 96.85 %.
+
+Through the search, there are a two different groups of features that are used, [1, 2, 3, 6] for smaller ns,
+and [2, 6, 7] for all larger n up to 19. features 2 and 6 are strong in both groups. These features are
+Excess kurtosis of the integrated profile, and  Excess kurtosis of the DM-SNR curve. In small k clustering,
+Standard deviation of the integrated profile and Skewness of the integrated profile is used, but in larger
+K cluster, those are replaced with Skewness of the DM-SNR curve. 
+When discussing the choice of n, even numbers should never be chosen despite its accuracy, because it can then 
+predict the class label based on order of the instances, and not based on clustering if there is a tie. So looking 
+at the the odd only numbers, only k = [1, 3, 5] are above the 90% threshhold, with ! being the greatest accuracy.
