@@ -10,6 +10,7 @@ set of [2, 1, 6, 3] as the best feature set with an accuracy of 94.06%. This was
 from 1-20 to find the best k/feature set combination. results below:
 
 | Feature Set | Accuracy | K |
+| ------------ | ------------------ | - |
 | [2, 1, 6, 3] | 0.9685439713934518 | 1 |
 | [2, 6, 1, 3] | 0.9406637613141133 | 3 |
 | [2, 6, 1, 3] | 0.9186501285059783 | 5 | 
