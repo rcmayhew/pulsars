@@ -25,9 +25,14 @@ good as I expected so I searched through all k from 1-20 to find the best k/feat
 
 The best feature set was [2, 1, 6, 3] with a K of 1, and that give an accuracy of 96.85 %.
 
-Through the search, there are a two different groups of features that are used, [1, 2, 3, 6] for smaller n's,
-and [2, 6, 7] for all larger n up to 19. Features 2 and 6 are strong in both groups. These features are
-Excess kurtosis of the integrated profile, and  Excess kurtosis of the DM-SNR curve. In small k clusterings,
-Standard deviation of the integrated profile and Skewness of the integrated profile are used, but in larger
-K cluster, those are replaced with Skewness of the DM-SNR curve. 
-So looking at all the numbers, only k = [1, 3, 5] are above the 90% threshhold, with k=1 being the greatest accuracy.
+This was without standarizing that data first. After running the test again on standardized data on the best k's from the earlier test 
+I got:
+
+| Feature Set | Accuracy | K |
+| ------------ | ------------------ | - |
+| [2, 3, 6, 7, 4, 1, 5, 0] | 0.9713934517823221 | 1 |
+| [2, 7, 1, 4, 5, 6, 3]    | 0.9442954520058107 | 3 |
+| [2, 7, 3, 4, 0, 1, 6, 5] | 0.922728796513577  | 5 |
+
+While these are modest increases, it lowers the 3.5% gap from the best k=1 model to 2.9% gap. I currently believe the best way to imporve 
+this model is to switch to a neurel network, but I am still running searchs to find out.
